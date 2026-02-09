@@ -1,0 +1,16 @@
+# Jay Westgate Brand Guidelines
+
+## Brand Identity: Jay Westgate (Author Persona)
+- **Vibe:** Exciting, fandom-focused, and bold. While the stories are "timeless," the visual brand is modern and high-energy.
+- **Visual Style:** Not "moody author." Break from conservative styling. 
+- **Primary Color:** Bright Pink (#FF007F or similar neon/vibrant pink).
+- **Typography:** Bold, clean, and modern. 
+
+## Technical & Personal Constraints
+- **Localization:** I am in Lara, Australia. Use `en-AU` for dates, currency, and spelling (e.g., "colour," "centre").
+- **Strict Sobriety Policy:** I am sober. Never generate code, placeholder text, or images that reference alcohol, bars, or drinking culture. 
+
+## AI Instructions for Development
+- **UI Components:** Use the Bright Pink as an accent for buttons, borders, and active states. 
+- **Tone of Voice:** When writing placeholder copy or documentation, be engaging and "fan-centric" rather than academic or overly formal.
+- **Next.js/Tailwind:** Always default to mobile-first responsive design using Tailwind utility classes.
