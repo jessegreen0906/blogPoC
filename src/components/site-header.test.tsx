@@ -1,9 +1,48 @@
-import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { cleanup, render, screen } from "@testing-library/react";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { SiteHeader } from "@/components/site-header";
 
+const { usePathnameMock } = vi.hoisted(() => ({
+  usePathnameMock: vi.fn(),
+}));
+
+vi.mock("next/navigation", () => ({
+  usePathname: usePathnameMock,
+}));
+
 describe("SiteHeader", () => {
+  afterEach(() => {
+    cleanup();
+  });
+
+  it("marks home as current on the homepage", () => {
+    usePathnameMock.mockReturnValue("/");
+    render(<SiteHeader />);
+    expect(screen.getByRole("link", { name: "Home" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
+    expect(screen.getByRole("link", { name: "About" })).not.toHaveAttribute(
+      "aria-current",
+      "page",
+    );
+  });
+
+  it("marks about as current on the about page", () => {
+    usePathnameMock.mockReturnValue("/about");
+    render(<SiteHeader />);
+    expect(screen.getByRole("link", { name: "About" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
+    expect(screen.getByRole("link", { name: "Home" })).not.toHaveAttribute(
+      "aria-current",
+      "page",
+    );
+  });
+
   it("renders brand title and navigation links", () => {
+    usePathnameMock.mockReturnValue("/");
     render(<SiteHeader />);
 
     expect(screen.getByRole("link", { name: "Jay Westgate" })).toHaveAttribute(
