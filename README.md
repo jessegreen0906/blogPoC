@@ -21,6 +21,16 @@ Then open `http://localhost:3000`.
 
 The Gatewatch signup posts to `POST /api/subscriptions`, which stores emails in DynamoDB.
 
+Amplify datastore provisioning code is included in:
+
+- `amplify/backend.ts`
+- `amplify/datastore/resource.ts`
+
+It creates a DynamoDB table named `GatewatchSubscriptionsTable` with on-demand billing and point-in-time recovery, and exposes:
+
+- `SUBSCRIPTIONS_TABLE_NAME`
+- `SUBSCRIPTIONS_TABLE_ARN`
+
 ### Required environment variables
 
 - `SUBSCRIPTIONS_TABLE_NAME` - DynamoDB table name for subscriptions
@@ -36,9 +46,9 @@ The Gatewatch signup posts to `POST /api/subscriptions`, which stores emails in 
 
 ### Amplify setup notes
 
-- Create the DynamoDB table in the same AWS account/region as Amplify.
-- Grant the Amplify hosting role permission for `dynamodb:PutItem` on this table.
-- Set `SUBSCRIPTIONS_TABLE_NAME` (and optionally `AWS_REGION`) in Amplify environment variables.
+- Deploy the Amplify backend so the table is created from code.
+- Set `SUBSCRIPTIONS_TABLE_NAME` in Amplify environment variables using the created table name output.
+- Grant the Amplify hosting runtime role permission for `dynamodb:PutItem` on the created table.
 
 ## Blog content format
 
