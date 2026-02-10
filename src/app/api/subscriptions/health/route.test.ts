@@ -13,6 +13,7 @@ describe("GET /api/subscriptions/health", () => {
       tableName: "GatewatchSubscriptions",
       tableNameSource: "default",
       hasAmplifyOutputsFile: false,
+      credentialSource: "default_provider_chain",
     });
 
     const response = await GET();
@@ -26,6 +27,7 @@ describe("GET /api/subscriptions/health", () => {
         tableName: "GatewatchSubscriptions",
         tableNameSource: "default",
         hasAmplifyOutputsFile: false,
+        credentialSource: "default_provider_chain",
       },
     });
   });

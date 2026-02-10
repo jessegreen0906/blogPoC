@@ -73,4 +73,24 @@ describe("POST /api/subscriptions", () => {
     expect(response.status).toBe(500);
     expect(data.error).toBe("Subscription datastore permission denied.");
   });
+
+  it("returns actionable error when runtime credentials are unavailable", async () => {
+    vi.mocked(saveSubscriptionEmail).mockRejectedValueOnce({
+      name: "CredentialsProviderError",
+      message: "Could not load credentials from any providers",
+    });
+
+    const request = new Request("http://localhost/api/subscriptions", {
+      method: "POST",
+      body: JSON.stringify({ email: "reader@example.com" }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const response = await POST(request);
+    const data = await response.json();
+
+    expect(response.status).toBe(500);
+    expect(data.error).toBe(
+      "AWS credentials are unavailable in runtime. Configure Amplify compute role or set DDB_ACCESS_KEY_ID and DDB_SECRET_ACCESS_KEY.",
+    );
+  });
 });

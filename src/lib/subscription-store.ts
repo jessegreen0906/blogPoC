@@ -7,7 +7,44 @@ import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
 const REGION = process.env.AWS_REGION ?? "ap-southeast-2";
 export const DEFAULT_SUBSCRIPTIONS_TABLE_NAME = "GatewatchSubscriptions";
 
-const client = DynamoDBDocumentClient.from(new DynamoDBClient({ region: REGION }));
+type CredentialSource = "default_provider_chain" | "explicit_env";
+
+type DynamoCredentialEnv = {
+  AWS_REGION?: string;
+  DDB_ACCESS_KEY_ID?: string;
+  DDB_SECRET_ACCESS_KEY?: string;
+  DDB_SESSION_TOKEN?: string;
+};
+
+export function getDynamoClientConfig(env: DynamoCredentialEnv = process.env as DynamoCredentialEnv) {
+  const accessKeyId = env.DDB_ACCESS_KEY_ID?.trim();
+  const secretAccessKey = env.DDB_SECRET_ACCESS_KEY?.trim();
+  const sessionToken = env.DDB_SESSION_TOKEN?.trim();
+
+  if (accessKeyId && secretAccessKey) {
+    return {
+      clientConfig: {
+        region: env.AWS_REGION ?? REGION,
+        credentials: {
+          accessKeyId,
+          secretAccessKey,
+          ...(sessionToken ? { sessionToken } : {}),
+        },
+      },
+      credentialSource: "explicit_env" as CredentialSource,
+    };
+  }
+
+  return {
+    clientConfig: {
+      region: env.AWS_REGION ?? REGION,
+    },
+    credentialSource: "default_provider_chain" as CredentialSource,
+  };
+}
+
+const dynamoClientConfig = getDynamoClientConfig();
+const client = DynamoDBDocumentClient.from(new DynamoDBClient(dynamoClientConfig.clientConfig));
 
 type AmplifyOutputs = {
   custom?: {
@@ -58,6 +95,7 @@ export function getSubscriptionsRuntimeConfig() {
     tableName,
     tableNameSource: source,
     hasAmplifyOutputsFile: Boolean(outputs),
+    credentialSource: dynamoClientConfig.credentialSource,
   };
 }
 

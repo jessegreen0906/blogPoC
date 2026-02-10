@@ -31,7 +31,7 @@ function getSubscriptionErrorMessage(error: unknown) {
     return "Subscription datastore table not found.";
   }
   if (message.includes("CredentialsProviderError") || errorName === "CredentialsProviderError") {
-    return "AWS credentials are unavailable in runtime.";
+    return "AWS credentials are unavailable in runtime. Configure Amplify compute role or set DDB_ACCESS_KEY_ID and DDB_SECRET_ACCESS_KEY.";
   }
 
   return "Unable to save subscription. Please check datastore configuration and permissions.";

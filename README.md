@@ -35,6 +35,10 @@ It creates a DynamoDB table named `GatewatchSubscriptions` with on-demand billin
 
 - `SUBSCRIPTIONS_TABLE_NAME` - DynamoDB table name for subscriptions
 - `AWS_REGION` - AWS region (defaults to `ap-southeast-2` if omitted)
+- Optional fallback when runtime role credentials are unavailable:
+  - `DDB_ACCESS_KEY_ID`
+  - `DDB_SECRET_ACCESS_KEY`
+  - `DDB_SESSION_TOKEN` (only if using temporary credentials)
 
 `SUBSCRIPTIONS_TABLE_NAME` can also be resolved from `amplify_outputs.json` at runtime when
 available. If neither is present, the server falls back to `GatewatchSubscriptions`.
@@ -63,11 +67,15 @@ available. If neither is present, the server falls back to `GatewatchSubscriptio
 
 - Verify `SUBSCRIPTIONS_TABLE_NAME` is set (or that `amplify_outputs.json` includes it).
 - Verify Amplify runtime role has `dynamodb:PutItem` access to `GatewatchSubscriptions`.
+- If runtime role credentials are not available in your Amplify setup, set `DDB_ACCESS_KEY_ID` and
+  `DDB_SECRET_ACCESS_KEY` as environment variables (with least-privilege IAM credentials limited to
+  the subscriptions table).
 - Check Amplify app logs for `Failed to save subscription email` details.
 - Open `GET /api/subscriptions/health` to confirm runtime diagnostics:
   - `tableName`
   - `tableNameSource` (`env`, `amplify_outputs`, or `default`)
   - `region`
+  - `credentialSource` (`default_provider_chain` or `explicit_env`)
 
 ## Blog content format
 

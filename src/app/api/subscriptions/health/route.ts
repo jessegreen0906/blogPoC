@@ -15,6 +15,7 @@ export async function GET() {
         tableName: config.tableName,
         tableNameSource: config.tableNameSource,
         hasAmplifyOutputsFile: config.hasAmplifyOutputsFile,
+        credentialSource: config.credentialSource,
       },
     },
     { status: 200 },
