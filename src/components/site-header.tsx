@@ -11,11 +11,11 @@ export function SiteHeader() {
   const isAbout = pathname === "/about";
 
   return (
-    <header className="border-b border-pink-100 bg-white/95">
+    <header className="border-b border-[color:var(--neutral)]/35 bg-[color:var(--background)]/95">
       <div className="mx-auto flex w-full max-w-4xl items-center justify-between px-4 py-4 sm:px-6">
         <Link
           href="/"
-          className="text-lg font-bold tracking-tight text-zinc-900 hover:text-pink-700"
+          className="text-lg font-bold tracking-tight text-[color:var(--text)] hover:text-[color:var(--primary)]"
         >
           Jay Westgate
         </Link>
@@ -25,8 +25,8 @@ export function SiteHeader() {
             aria-current={isHome ? "page" : undefined}
             className={`rounded-full px-3 py-1.5 font-medium transition-colors ${
               isHome
-                ? "bg-pink-100 text-pink-700"
-                : "text-zinc-700 hover:bg-pink-100 hover:text-pink-700"
+                ? "bg-[color:var(--primary)] text-[color:var(--text)]"
+                : "text-[color:var(--neutral)] hover:bg-[color:var(--primary)]/15 hover:text-[color:var(--text)]"
             }`}
           >
             Home
@@ -36,8 +36,8 @@ export function SiteHeader() {
             aria-current={isBooks ? "page" : undefined}
             className={`rounded-full px-3 py-1.5 font-medium transition-colors ${
               isBooks
-                ? "bg-pink-100 text-pink-700"
-                : "text-zinc-700 hover:bg-pink-100 hover:text-pink-700"
+                ? "bg-[color:var(--primary)] text-[color:var(--text)]"
+                : "text-[color:var(--neutral)] hover:bg-[color:var(--primary)]/15 hover:text-[color:var(--text)]"
             }`}
           >
             Books
@@ -47,8 +47,8 @@ export function SiteHeader() {
             aria-current={isBlog ? "page" : undefined}
             className={`rounded-full px-3 py-1.5 font-medium transition-colors ${
               isBlog
-                ? "bg-pink-100 text-pink-700"
-                : "text-zinc-700 hover:bg-pink-100 hover:text-pink-700"
+                ? "bg-[color:var(--primary)] text-[color:var(--text)]"
+                : "text-[color:var(--neutral)] hover:bg-[color:var(--primary)]/15 hover:text-[color:var(--text)]"
             }`}
           >
             Blog
@@ -58,8 +58,8 @@ export function SiteHeader() {
             aria-current={isAbout ? "page" : undefined}
             className={`rounded-full px-3 py-1.5 font-medium transition-colors ${
               isAbout
-                ? "bg-pink-100 text-pink-700"
-                : "text-zinc-700 hover:bg-pink-100 hover:text-pink-700"
+                ? "bg-[color:var(--primary)] text-[color:var(--text)]"
+                : "text-[color:var(--neutral)] hover:bg-[color:var(--primary)]/15 hover:text-[color:var(--text)]"
             }`}
           >
             About

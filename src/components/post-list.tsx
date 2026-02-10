@@ -8,25 +8,25 @@ type PostListProps = {
 export function PostList({ items }: PostListProps) {
   return (
     <section className="space-y-6">
-      <h2 className="text-2xl font-semibold tracking-tight text-zinc-900">
+      <h2 className="text-2xl font-semibold tracking-tight text-[color:var(--text)]">
         Latest posts
       </h2>
       <ul className="space-y-4">
         {items.map((post) => (
           <li
             key={post.slug}
-            className="rounded-xl border border-pink-100 bg-white p-5 shadow-sm transition-colors hover:border-pink-300"
+            className="rounded-xl border border-[color:var(--neutral)]/35 bg-[color:var(--background)] p-5 shadow-sm shadow-black/25 transition-colors hover:border-[color:var(--primary)]"
           >
             <Link
               href={`/blog/${post.slug}`}
-              className="text-lg font-semibold text-zinc-900 hover:text-pink-600"
+              className="text-lg font-semibold text-[color:var(--text)] hover:text-[color:var(--primary)]"
             >
               {post.title}
             </Link>
-            <p className="mt-2 text-sm text-zinc-500">
+            <p className="mt-2 text-sm text-[color:var(--neutral)]">
               {formatPostDate(post.date)}
             </p>
-            <p className="mt-3 text-zinc-700">{post.excerpt}</p>
+            <p className="mt-3 text-[color:var(--text)]/90">{post.excerpt}</p>
           </li>
         ))}
       </ul>
