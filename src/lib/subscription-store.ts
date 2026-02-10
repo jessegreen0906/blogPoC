@@ -15,6 +15,8 @@ type AmplifyOutputs = {
   };
 };
 
+type TableResolutionSource = "env" | "amplify_outputs" | "default";
+
 function loadAmplifyOutputs(): AmplifyOutputs | undefined {
   const outputsPath = path.join(process.cwd(), "amplify_outputs.json");
   if (!existsSync(outputsPath)) {
@@ -34,16 +36,33 @@ export function getSubscriptionsTableName(
   },
   amplifyOutputs?: AmplifyOutputs,
 ) {
-  const tableName =
-    env.SUBSCRIPTIONS_TABLE_NAME ??
-    amplifyOutputs?.custom?.SUBSCRIPTIONS_TABLE_NAME ??
-    DEFAULT_SUBSCRIPTIONS_TABLE_NAME;
+  const envTableName = env.SUBSCRIPTIONS_TABLE_NAME;
+  const outputsTableName = amplifyOutputs?.custom?.SUBSCRIPTIONS_TABLE_NAME;
 
-  return tableName;
+  const tableName = envTableName ?? outputsTableName ?? DEFAULT_SUBSCRIPTIONS_TABLE_NAME;
+  const source: TableResolutionSource = envTableName
+    ? "env"
+    : outputsTableName
+      ? "amplify_outputs"
+      : "default";
+
+  return { tableName, source };
+}
+
+export function getSubscriptionsRuntimeConfig() {
+  const outputs = loadAmplifyOutputs();
+  const { tableName, source } = getSubscriptionsTableName(undefined, outputs);
+
+  return {
+    region: REGION,
+    tableName,
+    tableNameSource: source,
+    hasAmplifyOutputsFile: Boolean(outputs),
+  };
 }
 
 export async function saveSubscriptionEmail(email: string) {
-  const tableName = getSubscriptionsTableName(undefined, loadAmplifyOutputs());
+  const { tableName } = getSubscriptionsTableName(undefined, loadAmplifyOutputs());
 
   await client.send(
     new PutCommand({

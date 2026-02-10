@@ -7,16 +7,25 @@ describe("subscription store config", () => {
       getSubscriptionsTableName({
         SUBSCRIPTIONS_TABLE_NAME: "GatewatchSubscriptions",
       }),
-    ).toBe("GatewatchSubscriptions");
+    ).toEqual({
+      tableName: "GatewatchSubscriptions",
+      source: "env",
+    });
   });
 
   it("uses default table name when env and outputs are missing", () => {
-    expect(getSubscriptionsTableName({})).toBe(DEFAULT_SUBSCRIPTIONS_TABLE_NAME);
+    expect(getSubscriptionsTableName({})).toEqual({
+      tableName: DEFAULT_SUBSCRIPTIONS_TABLE_NAME,
+      source: "default",
+    });
   });
 
   it("uses amplify custom output as a fallback", () => {
     expect(
       getSubscriptionsTableName({}, { custom: { SUBSCRIPTIONS_TABLE_NAME: "FromOutputsTable" } }),
-    ).toBe("FromOutputsTable");
+    ).toEqual({
+      tableName: "FromOutputsTable",
+      source: "amplify_outputs",
+    });
   });
 });

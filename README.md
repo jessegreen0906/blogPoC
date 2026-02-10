@@ -58,6 +58,10 @@ available. If neither is present, the server falls back to `GatewatchSubscriptio
 - Verify `SUBSCRIPTIONS_TABLE_NAME` is set (or that `amplify_outputs.json` includes it).
 - Verify Amplify runtime role has `dynamodb:PutItem` access to `GatewatchSubscriptions`.
 - Check Amplify app logs for `Failed to save subscription email` details.
+- Open `GET /api/subscriptions/health` to confirm runtime diagnostics:
+  - `tableName`
+  - `tableNameSource` (`env`, `amplify_outputs`, or `default`)
+  - `region`
 
 ## Blog content format
 

@@ -7,16 +7,28 @@ type SubscriptionRequestBody = {
 };
 
 function getSubscriptionErrorMessage(error: unknown) {
-  const message = error instanceof Error ? error.message : String(error);
+  const errorObject = error as {
+    name?: string;
+    code?: string;
+    message?: string;
+  };
+  const message = error instanceof Error ? error.message : (errorObject.message ?? String(error));
+  const errorName = errorObject.name ?? errorObject.code ?? "";
 
-  if (message.includes("SUBSCRIPTIONS_TABLE_NAME is not configured")) {
+  if (
+    message.includes("SUBSCRIPTIONS_TABLE_NAME is not configured") ||
+    errorName.includes("ConfigurationError")
+  ) {
     return "SUBSCRIPTIONS_TABLE_NAME is not configured.";
   }
-  if (message.includes("AccessDeniedException")) {
+  if (message.includes("AccessDeniedException") || errorName === "AccessDeniedException") {
     return "Subscription datastore permission denied.";
   }
-  if (message.includes("ResourceNotFoundException")) {
+  if (message.includes("ResourceNotFoundException") || errorName === "ResourceNotFoundException") {
     return "Subscription datastore table not found.";
+  }
+  if (message.includes("CredentialsProviderError") || errorName === "CredentialsProviderError") {
+    return "AWS credentials are unavailable in runtime.";
   }
 
   return "Unable to save subscription. Please check datastore configuration and permissions.";
