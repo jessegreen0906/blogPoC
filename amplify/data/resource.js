@@ -7,7 +7,9 @@ export function createSubscriptionsDatastoreResources(subscriptionsStack) {
     tableName: SUBSCRIPTIONS_TABLE_NAME,
     partitionKey: { name: "id", type: AttributeType.STRING },
     billingMode: BillingMode.PAY_PER_REQUEST,
-    pointInTimeRecovery: true,
+    pointInTimeRecoverySpecification: {
+      pointInTimeRecoveryEnabled: true,
+    },
   });
 
   return subscriptionsTable;
