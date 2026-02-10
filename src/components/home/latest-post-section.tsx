@@ -8,7 +8,7 @@ type LatestPostSectionProps = {
 export function LatestPostSection({ post }: LatestPostSectionProps) {
   return (
     <section className="w-full bg-[color:var(--text)]/5 px-4 py-12 sm:px-10">
-      <div className="w-full">
+      <div className="mx-auto w-full max-w-6xl">
         <h2 className="text-2xl font-semibold tracking-tight text-[color:var(--text)]">
           Latest from the blog
         </h2>

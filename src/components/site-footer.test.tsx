@@ -21,6 +21,6 @@ describe("SiteFooter", () => {
 
     const footer = container.querySelector("footer");
     expect(footer?.className).toContain("bg-[color:var(--text)]/10");
-    expect(container.innerHTML).not.toContain("max-w-4xl");
+    expect(container.innerHTML).toContain("max-w-6xl");
   });
 });

@@ -13,7 +13,7 @@ export function SiteHeader() {
 
   return (
     <header className="border-b border-[color:var(--neutral)]/45 bg-[color:var(--text)]/6">
-      <div className="flex w-full items-center justify-between px-4 py-4 sm:px-10">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-10">
         <Link
           href="/"
           className="inline-flex items-center text-lg font-bold tracking-tight text-[color:var(--text)] hover:text-[color:var(--primary)]"

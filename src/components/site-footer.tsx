@@ -3,7 +3,7 @@ import Link from "next/link";
 export function SiteFooter() {
   return (
     <footer className="mt-12 border-t border-[color:var(--neutral)]/45 bg-[color:var(--text)]/10">
-      <div className="grid w-full gap-8 px-4 py-8 text-sm text-[color:var(--neutral)] sm:px-10 md:grid-cols-2">
+      <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-8 text-sm text-[color:var(--neutral)] sm:px-10 md:grid-cols-2">
         <section>
           <h2 className="text-2xl font-semibold tracking-tight text-[color:var(--text)]">
             The Gatewatch

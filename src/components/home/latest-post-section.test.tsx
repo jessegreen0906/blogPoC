@@ -20,8 +20,10 @@ describe("LatestPostSection", () => {
     const section = container.querySelector("section");
 
     expect(section).not.toBeNull();
+    expect(section?.className).toContain("w-full");
     expect(section?.className).not.toContain("border");
     expect(section?.className).not.toContain("shadow");
+    expect(container.innerHTML).toContain("max-w-6xl");
   });
 
   it("renders latest post summary with read link", () => {

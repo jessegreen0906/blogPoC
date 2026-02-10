@@ -72,6 +72,6 @@ describe("SiteHeader", () => {
 
     const header = container.querySelector("header");
     expect(header?.className).toContain("bg-[color:var(--text)]/6");
-    expect(container.innerHTML).not.toContain("max-w-4xl");
+    expect(container.innerHTML).toContain("max-w-6xl");
   });
 });
