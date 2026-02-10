@@ -24,7 +24,7 @@ The Gatewatch signup posts to `POST /api/subscriptions`, which stores emails in 
 Amplify datastore provisioning code is included in:
 
 - `amplify/backend.ts`
-- `amplify/datastore/resource.ts`
+- `amplify/data/resource.ts`
 
 It creates a DynamoDB table named `GatewatchSubscriptions` with on-demand billing and point-in-time recovery, and exposes:
 

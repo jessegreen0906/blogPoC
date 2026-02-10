@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { getSubscriptionsRuntimeConfig } from "@/lib/subscription-store";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const config = getSubscriptionsRuntimeConfig();
 

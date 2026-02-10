@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import { isValidEmail, normalizeEmail } from "@/lib/email";
 import { saveSubscriptionEmail } from "@/lib/subscription-store";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 type SubscriptionRequestBody = {
   email?: string;
 };
