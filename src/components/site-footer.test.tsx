@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/site-footer";
 
 describe("SiteFooter", () => {
   it("renders gatewatch signup and social links", () => {
-    render(<SiteFooter />);
+    const { container } = render(<SiteFooter />);
 
     expect(screen.getByRole("heading", { name: "The Gatewatch" })).toBeInTheDocument();
     expect(screen.getByLabelText("Email address")).toHaveAttribute("type", "email");
@@ -18,5 +18,9 @@ describe("SiteFooter", () => {
       "href",
       "mailto:hello@jaywestgate.com",
     );
+
+    const footer = container.querySelector("footer");
+    expect(footer?.className).toContain("bg-[color:var(--text)]/10");
+    expect(container.innerHTML).not.toContain("max-w-4xl");
   });
 });

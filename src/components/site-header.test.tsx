@@ -60,7 +60,7 @@ describe("SiteHeader", () => {
 
   it("renders brand title and navigation links", () => {
     usePathnameMock.mockReturnValue("/");
-    render(<SiteHeader />);
+    const { container } = render(<SiteHeader />);
 
     const logo = screen.getByRole("img", { name: "Jay Westgate logo" });
     expect(logo).toHaveAttribute("src", expect.stringContaining("sig_magenta.png"));
@@ -69,5 +69,9 @@ describe("SiteHeader", () => {
     expect(screen.getByRole("link", { name: "Books" })).toHaveAttribute("href", "/books");
     expect(screen.getByRole("link", { name: "Blog" })).toHaveAttribute("href", "/blog");
     expect(screen.getByRole("link", { name: "About" })).toHaveAttribute("href", "/about");
+
+    const header = container.querySelector("header");
+    expect(header?.className).toContain("bg-[color:var(--text)]/6");
+    expect(container.innerHTML).not.toContain("max-w-4xl");
   });
 });
