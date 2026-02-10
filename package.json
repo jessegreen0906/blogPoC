@@ -11,8 +11,11 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@aws-amplify/backend": "^1.20.0",
     "@aws-sdk/client-dynamodb": "^3.986.0",
     "@aws-sdk/lib-dynamodb": "^3.986.0",
+    "aws-cdk-lib": "^2.238.0",
+    "constructs": "^10.4.5",
     "gray-matter": "^4.0.3",
     "next": "16.1.6",
     "react": "19.2.3",
