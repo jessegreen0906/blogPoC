@@ -7,7 +7,7 @@ type UpcomingBookSectionProps = {
 
 export function UpcomingBookSection({ book }: UpcomingBookSectionProps) {
   return (
-    <section className="w-full bg-[color:var(--primary)]/12 px-4 py-12 sm:px-10">
+    <section className="w-full flex-1 bg-[color:var(--primary)]/12 px-4 py-12 sm:px-10">
       <div className="mx-auto w-full max-w-6xl">
         <h2 className="inline-flex bg-[color:var(--primary)]/25 px-3 py-1 text-sm font-semibold text-[color:var(--text)]">
           Upcoming book

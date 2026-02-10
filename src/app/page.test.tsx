@@ -10,6 +10,8 @@ describe("Home page", () => {
 
     expect(main).not.toBeNull();
     expect(main?.className).toContain("w-full");
+    expect(main?.className).toContain("min-h-full");
+    expect(main?.className).toContain("flex");
     expect(main?.className).not.toContain("max-w");
     expect(container.innerHTML).not.toContain("rounded-");
     expect(screen.getByRole("heading", { name: "Upcoming book" })).toBeInTheDocument();
