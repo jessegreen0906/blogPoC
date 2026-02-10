@@ -25,7 +25,13 @@ export async function POST(request: Request) {
     await saveSubscriptionEmail(normalizedEmail);
   } catch (error) {
     console.error("Failed to save subscription email", error);
-    return NextResponse.json({ error: "Unable to save subscription." }, { status: 500 });
+    return NextResponse.json(
+      {
+        error:
+          "Unable to save subscription. Please check datastore configuration and permissions.",
+      },
+      { status: 500 },
+    );
   }
 
   return NextResponse.json({ ok: true }, { status: 200 });

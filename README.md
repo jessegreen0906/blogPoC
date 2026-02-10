@@ -36,6 +36,9 @@ It creates a DynamoDB table named `GatewatchSubscriptionsTable` with on-demand b
 - `SUBSCRIPTIONS_TABLE_NAME` - DynamoDB table name for subscriptions
 - `AWS_REGION` - AWS region (defaults to `ap-southeast-2` if omitted)
 
+`SUBSCRIPTIONS_TABLE_NAME` can also be resolved from `amplify_outputs.json` at runtime when
+available.
+
 ### DynamoDB table shape
 
 - Partition key: `id` (String)
@@ -49,6 +52,12 @@ It creates a DynamoDB table named `GatewatchSubscriptionsTable` with on-demand b
 - Deploy the Amplify backend so the table is created from code.
 - Set `SUBSCRIPTIONS_TABLE_NAME` in Amplify environment variables using the created table name output.
 - Grant the Amplify hosting runtime role permission for `dynamodb:PutItem` on the created table.
+
+### Troubleshooting 500 errors on subscribe
+
+- Verify `SUBSCRIPTIONS_TABLE_NAME` is set (or that `amplify_outputs.json` includes it).
+- Verify Amplify runtime role has `dynamodb:PutItem` access to `GatewatchSubscriptionsTable`.
+- Check Amplify app logs for `Failed to save subscription email` details.
 
 ## Blog content format
 

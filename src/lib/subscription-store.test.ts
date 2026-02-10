@@ -15,4 +15,10 @@ describe("subscription store config", () => {
       "SUBSCRIPTIONS_TABLE_NAME is not configured.",
     );
   });
+
+  it("uses amplify custom output as a fallback", () => {
+    expect(
+      getSubscriptionsTableName({}, { custom: { SUBSCRIPTIONS_TABLE_NAME: "FromOutputsTable" } }),
+    ).toBe("FromOutputsTable");
+  });
 });

@@ -55,9 +55,14 @@ describe("GatewatchSignupForm", () => {
 
   it("shows error when API returns failure", async () => {
     vi.spyOn(global, "fetch").mockResolvedValue(
-      new Response(JSON.stringify({ error: "Unable to save subscription." }), {
+      new Response(
+        JSON.stringify({
+          error: "Unable to save subscription. Please check datastore configuration and permissions.",
+        }),
+        {
         status: 500,
-      }),
+      },
+      ),
     );
     render(<GatewatchSignupForm />);
 
@@ -66,6 +71,8 @@ describe("GatewatchSignupForm", () => {
     });
     fireEvent.click(screen.getByRole("button", { name: "Subscribe" }));
 
-    expect(await screen.findByRole("alert")).toHaveTextContent("Unable to save subscription.");
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "Unable to save subscription. Please check datastore configuration and permissions.",
+    );
   });
 });
