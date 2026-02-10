@@ -3,7 +3,7 @@ backend:
   phases:
     build:
       commands:
-        - npm ci
+        - npm ci --legacy-peer-deps
         - export AMPX_APP_ID="${AMPLIFY_APP_ID:-$AWS_APP_ID}"
         - |
           if [ -z "$AMPX_APP_ID" ]; then
@@ -15,7 +15,7 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm ci
+        - npm ci --legacy-peer-deps
     build:
       commands:
         - npm run build

@@ -24,7 +24,7 @@ The Gatewatch signup posts to `POST /api/subscriptions`, which stores emails in 
 Amplify datastore provisioning code is included in:
 
 - `amplify/backend.ts`
-- `amplify/data/resource.ts`
+- `amplify/data/resource.js`
 
 It creates a DynamoDB table named `GatewatchSubscriptions` with on-demand billing and point-in-time recovery, and exposes:
 
@@ -52,6 +52,8 @@ available. If neither is present, the server falls back to `GatewatchSubscriptio
 - Ensure Amplify uses the repository `amplify.yml` so backend deployment runs.
 - The build now runs `npx @aws-amplify/backend-cli pipeline-deploy --branch $AWS_BRANCH --app-id $AMPLIFY_APP_ID`
   to create/update backend resources (including DynamoDB).
+- Build uses `npm ci --legacy-peer-deps` in Amplify to avoid CI peer-resolution failures from
+  Amplify/CDK transitive packages.
 - Set `SUBSCRIPTIONS_TABLE_NAME` in Amplify environment variables using the created table name output.
 - Grant the Amplify hosting runtime role permission for `dynamodb:PutItem` on the created table.
 - In Amplify environment variables, set:
