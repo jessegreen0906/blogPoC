@@ -1,22 +1,39 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-
-function isValidEmail(value: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-}
+import { isValidEmail, normalizeEmail } from "@/lib/email";
 
 export function GatewatchSignupForm() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const normalizedEmail = email.trim().toLowerCase();
+    const normalizedEmail = normalizeEmail(email);
 
     if (!isValidEmail(normalizedEmail)) {
       setError("Please enter a valid email address.");
+      setSuccessMessage("");
+      return;
+    }
+
+    let response: Response;
+    try {
+      response = await fetch("/api/subscriptions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: normalizedEmail }),
+      });
+    } catch {
+      setError("Unable to save subscription.");
+      setSuccessMessage("");
+      return;
+    }
+
+    if (!response.ok) {
+      const data = (await response.json().catch(() => null)) as { error?: string } | null;
+      setError(data?.error ?? "Unable to save subscription.");
       setSuccessMessage("");
       return;
     }

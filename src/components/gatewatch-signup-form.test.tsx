@@ -18,6 +18,7 @@ describe("GatewatchSignupForm", () => {
 
   it("shows an error and does not log for invalid email", () => {
     const logSpy = vi.spyOn(console, "log").mockImplementation(() => {});
+    const fetchSpy = vi.spyOn(global, "fetch");
     render(<GatewatchSignupForm />);
 
     fireEvent.change(screen.getByLabelText("Email address"), {
@@ -27,10 +28,14 @@ describe("GatewatchSignupForm", () => {
 
     expect(screen.getByRole("alert")).toHaveTextContent("Please enter a valid email address.");
     expect(logSpy).not.toHaveBeenCalled();
+    expect(fetchSpy).not.toHaveBeenCalled();
   });
 
-  it("logs submitted email when valid", () => {
+  it("submits email to API and logs success when valid", async () => {
     const logSpy = vi.spyOn(console, "log").mockImplementation(() => {});
+    vi.spyOn(global, "fetch").mockResolvedValue(
+      new Response(JSON.stringify({ ok: true }), { status: 200 }),
+    );
     render(<GatewatchSignupForm />);
 
     fireEvent.change(screen.getByLabelText("Email address"), {
@@ -38,9 +43,29 @@ describe("GatewatchSignupForm", () => {
     });
     fireEvent.click(screen.getByRole("button", { name: "Subscribe" }));
 
-    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
-    expect(screen.getByRole("status")).toHaveTextContent("You are on the Gatewatch list.");
+    expect(global.fetch).toHaveBeenCalledWith("/api/subscriptions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: "reader@example.com" }),
+    });
+    expect(await screen.findByRole("status")).toHaveTextContent("You are on the Gatewatch list.");
     expect(screen.getByLabelText("Email address")).toHaveValue("");
     expect(logSpy).toHaveBeenCalledWith("Gatewatch signup submitted", "reader@example.com");
+  });
+
+  it("shows error when API returns failure", async () => {
+    vi.spyOn(global, "fetch").mockResolvedValue(
+      new Response(JSON.stringify({ error: "Unable to save subscription." }), {
+        status: 500,
+      }),
+    );
+    render(<GatewatchSignupForm />);
+
+    fireEvent.change(screen.getByLabelText("Email address"), {
+      target: { value: "reader@example.com" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "Subscribe" }));
+
+    expect(await screen.findByRole("alert")).toHaveTextContent("Unable to save subscription.");
   });
 });

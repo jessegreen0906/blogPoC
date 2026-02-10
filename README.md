@@ -17,6 +17,29 @@ npm run dev
 
 Then open `http://localhost:3000`.
 
+## Gatewatch email storage (AWS Amplify)
+
+The Gatewatch signup posts to `POST /api/subscriptions`, which stores emails in DynamoDB.
+
+### Required environment variables
+
+- `SUBSCRIPTIONS_TABLE_NAME` - DynamoDB table name for subscriptions
+- `AWS_REGION` - AWS region (defaults to `ap-southeast-2` if omitted)
+
+### DynamoDB table shape
+
+- Partition key: `id` (String)
+- Attributes stored:
+  - `id` (UUID)
+  - `email` (normalized lowercase email)
+  - `createdAt` (ISO timestamp)
+
+### Amplify setup notes
+
+- Create the DynamoDB table in the same AWS account/region as Amplify.
+- Grant the Amplify hosting role permission for `dynamodb:PutItem` on this table.
+- Set `SUBSCRIPTIONS_TABLE_NAME` (and optionally `AWS_REGION`) in Amplify environment variables.
+
 ## Blog content format
 
 Blog posts are stored in `blog/*.md` with frontmatter:
