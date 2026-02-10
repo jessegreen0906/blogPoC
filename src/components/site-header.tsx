@@ -1,5 +1,6 @@
  "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -15,9 +16,15 @@ export function SiteHeader() {
       <div className="mx-auto flex w-full max-w-4xl items-center justify-between px-4 py-4 sm:px-6">
         <Link
           href="/"
-          className="text-lg font-bold tracking-tight text-[color:var(--text)] hover:text-[color:var(--primary)]"
+          className="inline-flex items-center text-lg font-bold tracking-tight text-[color:var(--text)] hover:text-[color:var(--primary)]"
         >
-          Jay Westgate
+          <Image
+            src="/media/images/sig_magenta.png"
+            alt="Jay Westgate logo"
+            width={160}
+            height={48}
+            priority
+          />
         </Link>
         <nav aria-label="Primary navigation" className="flex items-center gap-3 text-sm">
           <Link

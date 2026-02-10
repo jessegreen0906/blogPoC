@@ -62,10 +62,9 @@ describe("SiteHeader", () => {
     usePathnameMock.mockReturnValue("/");
     render(<SiteHeader />);
 
-    expect(screen.getByRole("link", { name: "Jay Westgate" })).toHaveAttribute(
-      "href",
-      "/",
-    );
+    const logo = screen.getByRole("img", { name: "Jay Westgate logo" });
+    expect(logo).toHaveAttribute("src", expect.stringContaining("sig_magenta.png"));
+    expect(logo.closest("a")).toHaveAttribute("href", "/");
     expect(screen.getByRole("link", { name: "Home" })).toHaveAttribute("href", "/");
     expect(screen.getByRole("link", { name: "Books" })).toHaveAttribute("href", "/books");
     expect(screen.getByRole("link", { name: "Blog" })).toHaveAttribute("href", "/blog");
