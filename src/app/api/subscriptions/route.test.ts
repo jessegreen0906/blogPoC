@@ -38,4 +38,21 @@ describe("POST /api/subscriptions", () => {
     expect(data.ok).toBe(true);
     expect(saveSubscriptionEmail).toHaveBeenCalledWith("reader@example.com");
   });
+
+  it("returns actionable error when table name is missing", async () => {
+    vi.mocked(saveSubscriptionEmail).mockRejectedValueOnce(
+      new Error("SUBSCRIPTIONS_TABLE_NAME is not configured."),
+    );
+
+    const request = new Request("http://localhost/api/subscriptions", {
+      method: "POST",
+      body: JSON.stringify({ email: "reader@example.com" }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const response = await POST(request);
+    const data = await response.json();
+
+    expect(response.status).toBe(500);
+    expect(data.error).toBe("SUBSCRIPTIONS_TABLE_NAME is not configured.");
+  });
 });
