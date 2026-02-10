@@ -14,19 +14,16 @@
   --color-primary: var(--primary);
   --color-neutral: var(--neutral);
   --color-text: var(--text);
-  --font-title: var(--font-cinzel);
-  --font-header: var(--font-montserrat);
-  --font-body: var(--font-libre-baskerville);
 }
 
 body {
   background: var(--background);
   color: var(--text);
-  font-family: var(--font-body), Georgia, "Times New Roman", serif;
+  font-family: var(--font-libre-baskerville), Georgia, "Times New Roman", serif;
 }
 
 h1 {
-  font-family: var(--font-title), Georgia, "Times New Roman", serif;
+  font-family: var(--font-cinzel), Georgia, "Times New Roman", serif;
 }
 
 h2,
@@ -37,19 +34,19 @@ h6,
 button,
 label,
 nav a {
-  font-family: var(--font-header), Arial, Helvetica, sans-serif;
+  font-family: var(--font-montserrat), Arial, Helvetica, sans-serif;
   font-weight: 700;
 }
 
 .font-title {
-  font-family: var(--font-title), Georgia, "Times New Roman", serif;
+  font-family: var(--font-cinzel), Georgia, "Times New Roman", serif;
 }
 
 .font-header {
-  font-family: var(--font-header), Arial, Helvetica, sans-serif;
+  font-family: var(--font-montserrat), Arial, Helvetica, sans-serif;
   font-weight: 700;
 }
 
 .font-body {
-  font-family: var(--font-body), Georgia, "Times New Roman", serif;
+  font-family: var(--font-libre-baskerville), Georgia, "Times New Roman", serif;
 }
