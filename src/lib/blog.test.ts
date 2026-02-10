@@ -25,6 +25,11 @@ describe("blog markdown library", () => {
     expect(latest?.excerpt.length).toBeGreaterThan(10);
   });
 
+  it("prefers frontmatter excerpt when provided", async () => {
+    const latest = await getPostPreview();
+    expect(latest?.excerpt).toBe("A short intro to my first post.");
+  });
+
   it("formats dates using en-AU long style", () => {
     expect(formatPostDate("2026-02-10")).toBe("10 February 2026");
   });

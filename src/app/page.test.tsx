@@ -9,9 +9,7 @@ describe("Home page", () => {
 
     expect(screen.getByRole("heading", { name: "Upcoming book" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Latest from the blog" })).toBeInTheDocument();
-    expect(
-      screen.getByText("You wouldn't believe it, but this is my first post."),
-    ).toBeInTheDocument();
+    expect(screen.getByText("A short intro to my first post.")).toBeInTheDocument();
     expect(screen.getByLabelText("Email address")).toHaveAttribute("type", "email");
     expect(screen.getByRole("button", { name: "Subscribe" })).toBeInTheDocument();
   });
