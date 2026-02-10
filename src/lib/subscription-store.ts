@@ -5,6 +5,7 @@ import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
 
 const REGION = process.env.AWS_REGION ?? "ap-southeast-2";
+export const DEFAULT_SUBSCRIPTIONS_TABLE_NAME = "GatewatchSubscriptions";
 
 const client = DynamoDBDocumentClient.from(new DynamoDBClient({ region: REGION }));
 
@@ -34,11 +35,10 @@ export function getSubscriptionsTableName(
   amplifyOutputs?: AmplifyOutputs,
 ) {
   const tableName =
-    env.SUBSCRIPTIONS_TABLE_NAME ?? amplifyOutputs?.custom?.SUBSCRIPTIONS_TABLE_NAME;
+    env.SUBSCRIPTIONS_TABLE_NAME ??
+    amplifyOutputs?.custom?.SUBSCRIPTIONS_TABLE_NAME ??
+    DEFAULT_SUBSCRIPTIONS_TABLE_NAME;
 
-  if (!tableName) {
-    throw new Error("SUBSCRIPTIONS_TABLE_NAME is not configured.");
-  }
   return tableName;
 }
 

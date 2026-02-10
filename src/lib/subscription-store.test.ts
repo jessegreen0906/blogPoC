@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getSubscriptionsTableName } from "@/lib/subscription-store";
+import { DEFAULT_SUBSCRIPTIONS_TABLE_NAME, getSubscriptionsTableName } from "@/lib/subscription-store";
 
 describe("subscription store config", () => {
   it("returns explicit subscriptions table name", () => {
@@ -10,10 +10,8 @@ describe("subscription store config", () => {
     ).toBe("GatewatchSubscriptions");
   });
 
-  it("throws when subscriptions table name is missing", () => {
-    expect(() => getSubscriptionsTableName({})).toThrowError(
-      "SUBSCRIPTIONS_TABLE_NAME is not configured.",
-    );
+  it("uses default table name when env and outputs are missing", () => {
+    expect(getSubscriptionsTableName({})).toBe(DEFAULT_SUBSCRIPTIONS_TABLE_NAME);
   });
 
   it("uses amplify custom output as a fallback", () => {

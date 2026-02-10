@@ -26,7 +26,7 @@ Amplify datastore provisioning code is included in:
 - `amplify/backend.ts`
 - `amplify/datastore/resource.ts`
 
-It creates a DynamoDB table named `GatewatchSubscriptionsTable` with on-demand billing and point-in-time recovery, and exposes:
+It creates a DynamoDB table named `GatewatchSubscriptions` with on-demand billing and point-in-time recovery, and exposes:
 
 - `SUBSCRIPTIONS_TABLE_NAME`
 - `SUBSCRIPTIONS_TABLE_ARN`
@@ -37,7 +37,7 @@ It creates a DynamoDB table named `GatewatchSubscriptionsTable` with on-demand b
 - `AWS_REGION` - AWS region (defaults to `ap-southeast-2` if omitted)
 
 `SUBSCRIPTIONS_TABLE_NAME` can also be resolved from `amplify_outputs.json` at runtime when
-available.
+available. If neither is present, the server falls back to `GatewatchSubscriptions`.
 
 ### DynamoDB table shape
 
@@ -56,7 +56,7 @@ available.
 ### Troubleshooting 500 errors on subscribe
 
 - Verify `SUBSCRIPTIONS_TABLE_NAME` is set (or that `amplify_outputs.json` includes it).
-- Verify Amplify runtime role has `dynamodb:PutItem` access to `GatewatchSubscriptionsTable`.
+- Verify Amplify runtime role has `dynamodb:PutItem` access to `GatewatchSubscriptions`.
 - Check Amplify app logs for `Failed to save subscription email` details.
 
 ## Blog content format
