@@ -15,7 +15,7 @@ export function PostList({ items }: PostListProps) {
         {items.map((post) => (
           <li
             key={post.slug}
-            className="rounded-xl border border-[color:var(--neutral)]/35 bg-[color:var(--background)] p-5 shadow-sm shadow-black/25 transition-colors hover:border-[color:var(--primary)]"
+            className="border border-[color:var(--neutral)]/35 bg-[color:var(--background)] p-5 shadow-sm shadow-black/25 transition-colors hover:border-[color:var(--primary)]"
           >
             <Link
               href={`/blog/${post.slug}`}

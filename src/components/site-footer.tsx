@@ -21,11 +21,11 @@ export function SiteFooter() {
               type="email"
               required
               placeholder="Email address"
-              className="w-full rounded-full border border-[color:var(--neutral)]/55 bg-transparent px-4 py-2.5 text-[color:var(--text)] outline-none ring-[color:var(--primary)] placeholder:text-[color:var(--neutral)] focus:ring-2"
+              className="w-full border border-[color:var(--neutral)]/55 bg-transparent px-4 py-2.5 text-[color:var(--text)] outline-none ring-[color:var(--primary)] placeholder:text-[color:var(--neutral)] focus:ring-2"
             />
             <button
               type="submit"
-              className="rounded-full bg-[color:var(--primary)] px-5 py-2.5 text-sm font-semibold text-[color:var(--text)] transition-colors hover:brightness-110"
+              className="bg-[color:var(--primary)] px-5 py-2.5 text-sm font-semibold text-[color:var(--text)] transition-colors hover:brightness-110"
             >
               Subscribe
             </button>
@@ -39,7 +39,7 @@ export function SiteFooter() {
               href="https://www.tiktok.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-[color:var(--neutral)]/55 px-3 py-1.5 font-medium text-[color:var(--primary)] transition-colors hover:bg-[color:var(--primary)]/10"
+              className="border border-[color:var(--neutral)]/55 px-3 py-1.5 font-medium text-[color:var(--primary)] transition-colors hover:bg-[color:var(--primary)]/10"
             >
               TikTok
             </Link>
@@ -47,7 +47,7 @@ export function SiteFooter() {
               href="https://www.instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-[color:var(--neutral)]/55 px-3 py-1.5 font-medium text-[color:var(--primary)] transition-colors hover:bg-[color:var(--primary)]/10"
+              className="border border-[color:var(--neutral)]/55 px-3 py-1.5 font-medium text-[color:var(--primary)] transition-colors hover:bg-[color:var(--primary)]/10"
             >
               Instagram
             </Link>
@@ -55,7 +55,7 @@ export function SiteFooter() {
               href="https://bsky.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-[color:var(--neutral)]/55 px-3 py-1.5 font-medium text-[color:var(--primary)] transition-colors hover:bg-[color:var(--primary)]/10"
+              className="border border-[color:var(--neutral)]/55 px-3 py-1.5 font-medium text-[color:var(--primary)] transition-colors hover:bg-[color:var(--primary)]/10"
             >
               Bluesky
             </Link>

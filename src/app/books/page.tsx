@@ -11,9 +11,9 @@ export default function BooksPage() {
         {books.map((book) => (
           <li
             key={book.title}
-            className="rounded-2xl border border-[color:var(--neutral)]/35 bg-[color:var(--background)] p-6 shadow-sm shadow-black/30"
+            className="border border-[color:var(--neutral)]/35 bg-[color:var(--background)] p-6 shadow-sm shadow-black/30"
           >
-            <p className="inline-flex rounded-full bg-[color:var(--primary)]/20 px-3 py-1 text-sm font-semibold text-[color:var(--text)]">
+            <p className="inline-flex bg-[color:var(--primary)]/20 px-3 py-1 text-sm font-semibold text-[color:var(--text)]">
               {book.status}
             </p>
             <h2 className="mt-4 text-2xl font-semibold text-[color:var(--text)]">{book.title}</h2>

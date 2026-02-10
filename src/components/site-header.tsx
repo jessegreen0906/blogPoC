@@ -30,7 +30,7 @@ export function SiteHeader() {
           <Link
             href="/"
             aria-current={isHome ? "page" : undefined}
-            className={`rounded-full px-3 py-1.5 font-medium transition-colors ${
+            className={`px-3 py-1.5 font-medium transition-colors ${
               isHome
                 ? "bg-[color:var(--primary)] text-[color:var(--text)]"
                 : "text-[color:var(--neutral)] hover:bg-[color:var(--primary)]/15 hover:text-[color:var(--text)]"
@@ -41,7 +41,7 @@ export function SiteHeader() {
           <Link
             href="/books"
             aria-current={isBooks ? "page" : undefined}
-            className={`rounded-full px-3 py-1.5 font-medium transition-colors ${
+            className={`px-3 py-1.5 font-medium transition-colors ${
               isBooks
                 ? "bg-[color:var(--primary)] text-[color:var(--text)]"
                 : "text-[color:var(--neutral)] hover:bg-[color:var(--primary)]/15 hover:text-[color:var(--text)]"
@@ -52,7 +52,7 @@ export function SiteHeader() {
           <Link
             href="/blog"
             aria-current={isBlog ? "page" : undefined}
-            className={`rounded-full px-3 py-1.5 font-medium transition-colors ${
+            className={`px-3 py-1.5 font-medium transition-colors ${
               isBlog
                 ? "bg-[color:var(--primary)] text-[color:var(--text)]"
                 : "text-[color:var(--neutral)] hover:bg-[color:var(--primary)]/15 hover:text-[color:var(--text)]"
@@ -63,7 +63,7 @@ export function SiteHeader() {
           <Link
             href="/about"
             aria-current={isAbout ? "page" : undefined}
-            className={`rounded-full px-3 py-1.5 font-medium transition-colors ${
+            className={`px-3 py-1.5 font-medium transition-colors ${
               isAbout
                 ? "bg-[color:var(--primary)] text-[color:var(--text)]"
                 : "text-[color:var(--neutral)] hover:bg-[color:var(--primary)]/15 hover:text-[color:var(--text)]"

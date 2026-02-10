@@ -10,7 +10,7 @@ export function PostTemplate({ post }: PostTemplateProps) {
     <article className="mx-auto w-full max-w-3xl space-y-6 px-4 py-10 sm:px-6">
       <Link
         href="/blog"
-        className="inline-flex rounded-full border border-[color:var(--neutral)]/45 px-4 py-2 text-sm font-medium text-[color:var(--primary)] transition-colors hover:bg-[color:var(--primary)]/10"
+        className="inline-flex border border-[color:var(--neutral)]/45 px-4 py-2 text-sm font-medium text-[color:var(--primary)] transition-colors hover:bg-[color:var(--primary)]/10"
       >
         Back to blog
       </Link>

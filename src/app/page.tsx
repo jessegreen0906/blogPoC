@@ -8,7 +8,7 @@ export default async function Home() {
   const upcomingBook = books[0];
 
   return (
-    <main className="mx-auto w-full max-w-4xl space-y-8 px-4 py-12 sm:px-6">
+    <main className="w-full space-y-0">
       <UpcomingBookSection book={upcomingBook} />
 
       {latestPost ? (
