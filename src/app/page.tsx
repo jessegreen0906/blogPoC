@@ -43,34 +43,6 @@ export default async function Home() {
           </Link>
         </section>
       ) : null}
-
-      <section className="rounded-2xl border border-[color:var(--neutral)]/35 bg-[color:var(--background)] p-6 shadow-sm shadow-black/30 sm:p-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-[color:var(--text)]">
-          Email newsletter signup
-        </h2>
-        <p className="mt-3 text-[color:var(--text)]/90">
-          Get chapter drops, release news, and fan updates sent directly to your inbox.
-        </p>
-        <form className="mt-5 flex flex-col gap-3 sm:flex-row" action="#">
-          <label htmlFor="email" className="sr-only">
-            Email address
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            placeholder="Email address"
-            className="w-full rounded-full border border-[color:var(--neutral)]/55 bg-transparent px-4 py-2.5 text-[color:var(--text)] outline-none ring-[color:var(--primary)] placeholder:text-[color:var(--neutral)] focus:ring-2"
-          />
-          <button
-            type="submit"
-            className="rounded-full bg-[color:var(--primary)] px-5 py-2.5 text-sm font-semibold text-[color:var(--text)] transition-colors hover:brightness-110"
-          >
-            Subscribe
-          </button>
-        </form>
-      </section>
     </main>
   );
 }
