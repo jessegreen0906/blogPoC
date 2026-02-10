@@ -50,7 +50,7 @@ available. If neither is present, the server falls back to `GatewatchSubscriptio
 ### Amplify setup notes
 
 - Ensure Amplify uses the repository `amplify.yml` so backend deployment runs.
-- The build now runs `npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID`
+- The build now runs `npx @aws-amplify/backend-cli pipeline-deploy --branch $AWS_BRANCH --app-id $AMPLIFY_APP_ID`
   to create/update backend resources (including DynamoDB).
 - Set `SUBSCRIPTIONS_TABLE_NAME` in Amplify environment variables using the created table name output.
 - Grant the Amplify hosting runtime role permission for `dynamodb:PutItem` on the created table.
