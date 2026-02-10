@@ -6,7 +6,7 @@ describe("SiteFooter", () => {
   it("renders gatewatch signup and social links", () => {
     const { container } = render(<SiteFooter />);
 
-    expect(screen.getByRole("heading", { name: "The Gatewatch" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Join the Gatewatch" })).toBeInTheDocument();
     expect(screen.getByLabelText("Email address")).toHaveAttribute("type", "email");
     expect(screen.getByRole("button", { name: "Subscribe" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "TikTok" })).toBeInTheDocument();
