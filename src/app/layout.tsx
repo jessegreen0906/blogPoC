@@ -1,17 +1,23 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/site-footer";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Cinzel, Libre_Baskerville, Montserrat } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const cinzel = Cinzel({
+  variable: "--font-cinzel",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
+});
+
+const libreBaskerville = Libre_Baskerville({
+  variable: "--font-libre-baskerville",
+  subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -27,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en-AU">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`}
+        className={`${cinzel.variable} ${montserrat.variable} ${libreBaskerville.variable} flex min-h-screen flex-col antialiased`}
       >
         <SiteHeader />
         <div className="flex-1">{children}</div>
