@@ -1,5 +1,5 @@
 import { defineBackend } from "@aws-amplify/backend";
-import { createSubscriptionsDatastoreResources } from "./data/resource";
+import { createSubscriptionsDatastoreResources } from "./data/resource.js";
 
 const backend = defineBackend({});
 const subscriptionsStack = backend.createStack("subscriptions-datastore");
