@@ -4,7 +4,13 @@ backend:
     build:
       commands:
         - npm ci
-        - npx @aws-amplify/backend-cli pipeline-deploy --branch $AWS_BRANCH --app-id $AMPLIFY_APP_ID
+        - export AMPX_APP_ID="${AMPLIFY_APP_ID:-$AWS_APP_ID}"
+        - |
+          if [ -z "$AMPX_APP_ID" ]; then
+            echo "Missing Amplify app id. Set AMPLIFY_APP_ID or rely on AWS_APP_ID."
+            exit 1
+          fi
+        - npx @aws-amplify/backend-cli pipeline-deploy --branch "$AWS_BRANCH" --app-id "$AMPX_APP_ID"
 frontend:
   phases:
     preBuild:

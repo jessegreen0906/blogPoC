@@ -55,7 +55,7 @@ available. If neither is present, the server falls back to `GatewatchSubscriptio
 - Set `SUBSCRIPTIONS_TABLE_NAME` in Amplify environment variables using the created table name output.
 - Grant the Amplify hosting runtime role permission for `dynamodb:PutItem` on the created table.
 - In Amplify environment variables, set:
-  - `AMPLIFY_APP_ID` to your Amplify app ID (for pipeline backend deploy)
+  - `AMPLIFY_APP_ID` to your Amplify app ID (optional if `AWS_APP_ID` is provided by Amplify build)
 
 ### Troubleshooting 500 errors on subscribe
 
