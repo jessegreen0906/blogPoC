@@ -1,7 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { PostList } from "@/components/post-list";
-import { posts } from "@/lib/posts";
+import type { BlogPostMeta } from "@/lib/blog";
+
+const posts: BlogPostMeta[] = [
+  {
+    slug: "firstPost",
+    title: "My first post",
+    date: "2026-02-10",
+    excerpt: "You wouldn't believe it, but this is my first post.",
+  },
+];
 
 describe("PostList", () => {
   it("renders a list of post titles and links", () => {
@@ -11,7 +20,7 @@ describe("PostList", () => {
     for (const post of posts) {
       expect(screen.getByRole("link", { name: post.title })).toHaveAttribute(
         "href",
-        `/posts/${post.slug}`,
+        `/blog/${post.slug}`,
       );
     }
   });

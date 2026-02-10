@@ -1,10 +1,15 @@
 export default function AboutPage() {
   return (
     <main className="mx-auto w-full max-w-4xl px-4 py-12 sm:px-6">
-      <h1 className="text-4xl font-bold tracking-tight text-zinc-900">About Jay Westgate</h1>
-      <p className="mt-4 max-w-2xl text-lg leading-8 text-zinc-700">
-        Jay writes bold, fandom-first stories with modern energy. This blog shares updates,
-        process notes, and new releases for readers who want to stay close to the Storyverse.
+      <h1 className="text-4xl font-bold tracking-tight text-zinc-900">About me</h1>
+      <p className="mt-4 max-w-3xl text-lg leading-8 text-zinc-700">
+        I am Jay Westgate, an author focused on bold, fandom-first storytelling. I build worlds
+        with momentum, memorable characters, and big emotional payoffs that keep readers turning
+        pages.
+      </p>
+      <p className="mt-4 max-w-3xl text-lg leading-8 text-zinc-700">
+        This site is where I share new book updates, blog posts, and behind-the-scenes notes from
+        the writing process as the Storyverse grows.
       </p>
     </main>
   );

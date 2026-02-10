@@ -26,16 +26,33 @@ describe("SiteHeader", () => {
       "aria-current",
       "page",
     );
+    expect(screen.getByRole("link", { name: "Blog" })).not.toHaveAttribute(
+      "aria-current",
+      "page",
+    );
   });
 
-  it("marks about as current on the about page", () => {
-    usePathnameMock.mockReturnValue("/about");
+  it("marks blog as current on blog routes", () => {
+    usePathnameMock.mockReturnValue("/blog/first-post");
     render(<SiteHeader />);
-    expect(screen.getByRole("link", { name: "About" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Blog" })).toHaveAttribute(
       "aria-current",
       "page",
     );
     expect(screen.getByRole("link", { name: "Home" })).not.toHaveAttribute(
+      "aria-current",
+      "page",
+    );
+  });
+
+  it("marks books as current on the bibliography page", () => {
+    usePathnameMock.mockReturnValue("/books");
+    render(<SiteHeader />);
+    expect(screen.getByRole("link", { name: "Books" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
+    expect(screen.getByRole("link", { name: "Blog" })).not.toHaveAttribute(
       "aria-current",
       "page",
     );
@@ -50,6 +67,8 @@ describe("SiteHeader", () => {
       "/",
     );
     expect(screen.getByRole("link", { name: "Home" })).toHaveAttribute("href", "/");
+    expect(screen.getByRole("link", { name: "Books" })).toHaveAttribute("href", "/books");
+    expect(screen.getByRole("link", { name: "Blog" })).toHaveAttribute("href", "/blog");
     expect(screen.getByRole("link", { name: "About" })).toHaveAttribute("href", "/about");
   });
 });

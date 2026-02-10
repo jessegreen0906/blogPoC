@@ -5,7 +5,9 @@ import { usePathname } from "next/navigation";
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const isHome = pathname === "/" || pathname.startsWith("/posts/");
+  const isHome = pathname === "/";
+  const isBooks = pathname.startsWith("/books");
+  const isBlog = pathname.startsWith("/blog");
   const isAbout = pathname === "/about";
 
   return (
@@ -28,6 +30,28 @@ export function SiteHeader() {
             }`}
           >
             Home
+          </Link>
+          <Link
+            href="/books"
+            aria-current={isBooks ? "page" : undefined}
+            className={`rounded-full px-3 py-1.5 font-medium transition-colors ${
+              isBooks
+                ? "bg-pink-100 text-pink-700"
+                : "text-zinc-700 hover:bg-pink-100 hover:text-pink-700"
+            }`}
+          >
+            Books
+          </Link>
+          <Link
+            href="/blog"
+            aria-current={isBlog ? "page" : undefined}
+            className={`rounded-full px-3 py-1.5 font-medium transition-colors ${
+              isBlog
+                ? "bg-pink-100 text-pink-700"
+                : "text-zinc-700 hover:bg-pink-100 hover:text-pink-700"
+            }`}
+          >
+            Blog
           </Link>
           <Link
             href="/about"

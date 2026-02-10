@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { formatPostDate, type Post } from "@/lib/posts";
+import { formatPostDate, type BlogPostMeta } from "@/lib/blog";
 
 type PostListProps = {
-  items: Post[];
+  items: BlogPostMeta[];
 };
 
 export function PostList({ items }: PostListProps) {
@@ -18,13 +18,13 @@ export function PostList({ items }: PostListProps) {
             className="rounded-xl border border-pink-100 bg-white p-5 shadow-sm transition-colors hover:border-pink-300"
           >
             <Link
-              href={`/posts/${post.slug}`}
+              href={`/blog/${post.slug}`}
               className="text-lg font-semibold text-zinc-900 hover:text-pink-600"
             >
               {post.title}
             </Link>
             <p className="mt-2 text-sm text-zinc-500">
-              {formatPostDate(post.publishedAt)}
+              {formatPostDate(post.date)}
             </p>
             <p className="mt-3 text-zinc-700">{post.excerpt}</p>
           </li>
